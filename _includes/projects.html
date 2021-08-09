@@ -2,14 +2,16 @@
   {% if project.redirect %}
   <a href="{{ project.redirect }}" target="_blank">
   {% else %}
-  <a href="{{ project.url | relative_url }}">
+  {% if project.direct %}
+  <a href="{{ project.direct | relative_url }}">
+  {% endif %}
   {% endif %}
     <div class="card hoverable">
       {% if project.img %}
       <img src="{{ project.img | relative_url }}" alt="project thumbnail">
       {% endif %}
       <div class="card-body">
-        <h2 class="card-title text-lowercase">{{ project.title }}</h2>
+        <h2 class="card-title">{{ project.title }}</h2>
         <p class="card-text">{{ project.description }}</p>
         <div class="row ml-1 mr-1 p-0">
           {% if project.github %}
@@ -28,5 +30,10 @@
         </div>
       </div>
     </div>
+  {% if project.redirect %} 
   </a>
+  {% endif %}
+  {% if project.direct %} 
+  </a>
+  {% endif %}
 </div>
